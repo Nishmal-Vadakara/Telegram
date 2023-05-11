@@ -2,7 +2,7 @@ name: Populate Messages
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # Run once per day
+    - cron: "*/1 * * * *"  # Run once pep
 
 jobs:
   populate_messages:

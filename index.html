@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Telegram Messages List</title>
+</head>
+<body>
+    <h1>Telegram Messages List</h1>
+    <ul id="messages-list">
+    </ul>
+
+    <script>
+        // Fetch the JSON data from the GitHub Pages API
+        fetch('https://api.github.com/repos/{Nishmal-Vadakara}/{Telegram}/contents/messages.json')
+            .then(response => response.json())
+            .then(data => {
+                // Parse the base64-encoded content to JSON
+                const content = atob(data.content);
+                const messages = JSON.parse(content);
+
+                const messagesList = document.getElementById('messages-list');
+
+                // Create list items for each message and append them to the list
+                messages.forEach(message => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = message.text;
+                    messagesList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
+</body>
+</html>
